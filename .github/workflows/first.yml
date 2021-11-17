@@ -1,35 +1,24 @@
 name: FirstExercise
 
 on: push
-  branches: [main]
 
 jobs:
 
-  job1:
-    name: First Job
+  job_ubuntu:
     runs-on: ubuntu-latest
     steps:
-      -name: Step One
-       uses: actions/checkout@v2
-      -name: Step Two
-       run: echo "11/17/2021"
-  job2:
-    name: Second Job
+      - run: date
+  job_windows:
     runs-on: windows-latest
     steps:
-      -name: Step One
-       uses: actions/checkout@v2
-      -name: Step Two
-       run: echo "11/17/2021"
-  job3:
-    name: Third Job
+       - run: date
+  job_macos:
     runs-on: macos-latest
     steps:
-      -name: Step One
-       uses: actions/checkout@v2
-      -name: Step Two
-       uses: echo "11/17/2021"
-  job4:
-    name: Fourth Job
+      - run: date
+  job_dependency:
+    needs: [job_ubuntu, job_windows, job_macos]
     runs-on: ubuntu-latest
-    needs: [job1. job2, job3]
+    steps:
+      - run: date
+ 
